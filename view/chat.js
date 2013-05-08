@@ -1,5 +1,15 @@
 //Represent a chat window
-FBMeet.Chat.Window = prototype({
+FBMeet.Chat.Window = prototype({ 
+    // Class properties (aka static in Java)
+    instances: 0,
+
+    build: function($chatWindow) {
+        instances += 1;
+        return new this($chatWindow);
+    }
+
+}, { 
+    // Instace properties
 
     // Fields
     when: 'soon',
@@ -50,85 +60,33 @@ FBMeet.Chat.Window = prototype({
     },
 
     findElements: function() {
-    	this.$today = $slide.find('.meet-today');
-    	this.$tomorrow = $slide.find('.meet-tomorrow');
-    	this.$soon = $slide.find('.meet-soon');
-    	this.$text = $slide.find('.meet-text');
-    	this.$loc = $slide.find('.meet-loc');
-    	this.$locBtn = $slide.find('.meet-loc-btn');
-    	this.$friendsBtn = $slide.find('.meet-friends-btn');
-    	this.$okFriends = $slide.find('.meet-ok');
-    	this.$cancelFriends = $slide.find('.meet-cancel');
-    	this.$dropbag = $slide.find('.meet-dropbag');
+    	this.$today = this.$slide.find('.meet-today');
+    	this.$tomorrow = this.$slide.find('.meet-tomorrow');
+    	this.$soon = this.$slide.find('.meet-soon');
+    	this.$text = this.$slide.find('.meet-text');
+    	this.$loc = this.$slide.find('.meet-loc');
+    	this.$locBtn = this.$slide.find('.meet-loc-btn');
+    	this.$friendsBtn = this.$slide.find('.meet-friends-btn');
+    	this.$okFriends = this.$slide.find('.meet-ok');
+    	this.$cancelFriends = this.$slide.find('.meet-cancel');
+    	this.$dropbag = this.$slide.find('.meet-dropbag');
     	this.dropbag = this.$dropbag[0];
-    	this.$ok = $slide.find('.meet-ok');
-    	this.$done = $slide.find('.meet-done');
+    	this.$ok = this.$slide.find('.meet-ok');
+    	this.$done = this.$slide.find('.meet-done');
+        this.$input = this.$chatWindow.find('textarea.uiTextareaAutogrow');
     },
 
+    //TODO: Instead of curry, use data argument for events, from jQuery
     setListeners: function() {
-    	$today.click(this.whenButtonListener.curry('today'));
-    	$tomorrow.click(this.whenButtonListener.curry('tomorrow'));
-    	$soon.click(this.whenButtonListener.curry('soon'));
-    	with (this) { 
-    	// Binds chat object attributes to locals (Just for copy 'n paste croata's code, refactor it!)
-    	//TODO: change calls to locals to fields of this obj (correctly localed as chat for e.g)
-    	//TODO: Refactor this out to a specialized listener
-	    	$("textarea.uiTextareaAutogrow", $chatWindow).bind('keyup', this.registerChatInput);
-
-	    	// Location button?
-	    	$locBtn.click(function() {
-	    		$slide.animate({height: '114px'}, 250);
-	   			$loc.show(300);
-	    		$locBtn.hide(200);
-	    	});
-
-	    	// Dran 'n Drop
-	    	this.dropbag.addEventListener("drop", FBMeet.Chat.DragDrop.drop, false);
-	    	this.dropbag.addEventListener("dragover", FBMeet.Chat.DragDrop.dragover, false);
-			$friendsBtn.click(function() {
-				$slide.slideUp(200);
-				$friendSlide.slideDown(270);
-				$.each($('.uiScrollableAreaBody li'), function(index, item) {
-					var $pic = $(item).find('.pic.img');
-					if ($pic && $pic.length > 0) {
-				        $pic.attr({id: 'meet-draggable-' + index, draggable: true});
-				        $pic[0].addEventListener("dragstart", FBMeet.Chat.DragDrop.dragstart, false);
-					}
-				});
-			});	    	
-	    	
-	    	// Cancel button when draggin friends
-			$cancelFriends.click(function() {
-				$dropbag.html("");
-				$friendSlide.slideUp(200);
-				$slide.slideDown(270);
-			});
-
-			// Add event ok button
-			$ok.click(function() {
-				e.preventDefault();
-				disableOkButton(); // chat
-				var inviteeName = $chatWindow.find('h4 a').html();
-				FBMeet.Event.add({
-					"name": $text.val(),
-					"location": $loc.val(),
-					"date": dateString(),
-					"time": "82800", // 23:00 default
-					"description": $text.val(),
-					"invitee": inviteeName
-				});
-			});
-
-			// Done butto
-			$done.click(function() {
-				$slide.slideUp(200);
-			});
-
-
-
-
-    	}
-
+    	this.$today.click(this.whenButtonListener.curry(this, 'today'));
+    	this.$tomorrow.click(this.whenButtonListener.curry(this, 'tomorrow'));
+    	this.$soon.click(this.whenButtonListener.curry(this, 'soon'));
+        this.$locBtn.click(this.buttonLocationClick.curry(this));
+        this.$friendsBtn.click(this.buttonFriendsClick.curry(this));
+        this.$cancelFriends.click(this.buttonCancelFriendsClick.curry(this));
+        this.$ok.click(this.buttonOkClick.curry(this));
+        this.$done.click(this.buttonDoneClick.curry(this));
+        this.$input.keyup(this.registerChatInput.curry(this));
     },
 
     dateString: function() {
@@ -156,12 +114,12 @@ FBMeet.Chat.Window = prototype({
     	this.$btn.css('background-image', 'url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif")');
     },
 
-    whenButtonListener: function(when) {
-    	this.when = when;
-    	$today.toggleClass('uiButtonOverlay', when != 'today').toggleClass('uiButtonDepressed', when == 'today');
-    	$tomorrow.toggleClass('uiButtonOverlay', when != 'tomorrow').toggleClass('uiButtonDepressed', when == 'tomorrow');
-    	$soon.toggleClass('uiButtonOverlay', when != 'soon').toggleClass('uiButtonDepressed', when == 'soon');
+    whenButtonListener: function(chat, when) {
+    	chat.when = when;
+    	chat.$today.toggleClass('uiButtonOverlay', when != 'today').toggleClass('uiButtonDepressed', when == 'today');
+    	chat.$tomorrow.toggleClass('uiButtonOverlay', when != 'tomorrow').toggleClass('uiButtonDepressed', when == 'tomorrow');
+    	chat.$soon.toggleClass('uiButtonOverlay', when != 'soon').toggleClass('uiButtonDepressed', when == 'soon');
     }
 
 
-});
+}).includes(FBMeet.Event.Chat.Listener);

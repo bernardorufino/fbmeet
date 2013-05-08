@@ -4,7 +4,15 @@ $(document).ready(function(e) {
 	var length = $tabs.children().length;
 		
 	$tabs.children().each(function(i, item) {
-		var chatWindow = new ChatWindow($(item));
+		ChatWindow.build($(item));
 	});
-	//TODO:!
+
+	var observer = new WebKitMutationObserver(function() {
+		var counter = $tabs.children().length;
+		var instances = FBMeet.Chat.Window.instances;
+		if (counter > instances)
+			ChatWindow.build($tabs.children(':first'));
+	});
+
+	observer.observe($tabs[0], {'childList': true});
 });

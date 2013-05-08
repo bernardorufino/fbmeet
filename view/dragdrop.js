@@ -1,5 +1,0 @@
-FBMeet.Chat.DragDropListener = {
-
-
-
-};
