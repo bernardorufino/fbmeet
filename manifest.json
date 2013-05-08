@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "FBMeet",
+  "description": "Integrates Facebook chat with events.",
+  "version": "2.0",
+
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["helper/authorizer.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.facebook.com/*"],
+      "js": ["lib/jquery.js", "api/event.js", "view/chat.js"]
+    }
+  ]
+}
