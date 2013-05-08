@@ -1,5 +1,10 @@
 $(document).ready(function(e) {
 
-	var chatWindow = new FBMeet.Chat.Window("bar");
-	alert(chatWindow.foo);
+	var $tabs = $('#ChatTabsPagelet .fbNubGroup.clearfix.videoCallEnabled');
+	var length = $tabs.children().length;
+		
+	$tabs.children().each(function(i, item) {
+		var chatWindow = new ChatWindow($(item));
+	});
+	//TODO:!
 });
