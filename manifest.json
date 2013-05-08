@@ -14,8 +14,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://www.facebook.com/*"],
-      "js": ["lib/jquery.js", "api/event.js", "view/chat.js"]
+      "matches": ["*://www.facebook.com/", "*://www.facebook.com/*"],
+      "js": [
+        "lib/lib.js", 
+        "lib/jquery.js", 
+        "init.js", 
+        "api/event.js", 
+        "view/chat.js",
+        "view/load.js"
+      ]
     }
   ]
 }
