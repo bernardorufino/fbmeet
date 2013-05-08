@@ -1,4 +1,4 @@
-FBMeet.Event.Chat.Listener = {
+FBMeet.Chat.Listener = {
 
 	// All methods here are included in FBMeet.Event.Chat.Window object
 
@@ -42,6 +42,7 @@ FBMeet.Event.Chat.Listener = {
 	},
 
 	buttonFriendsClick: function(chat, e) {
+		console.log("buttonFriendsClick");
 		chat.$slide.slideUp(200);
 		chat.$friendSlide.slideDown(270);
 		$('.uiScrollableAreaBody li').each(function(index, item) {
@@ -54,6 +55,7 @@ FBMeet.Event.Chat.Listener = {
 	},
 
 	buttonOkFriendsClick: function(chat, e) {
+		console.log("buttonOkFriendsClick");
 		e.preventDefault();
 		var names = chat.$dropbag.children().map(function(index, item) {
 			return $(item).data('name');
@@ -63,12 +65,14 @@ FBMeet.Event.Chat.Listener = {
 	},
 
 	buttonCancelFriendsClick: function(chat, e) {
+		console.log("buttonCancelFriendsClick");
 		chat.$dropbag.html("");
 		chat.$friendSlide.slideUp(200);
 		chat.$slide.slideDown(270);		
 	},
 
 	buttonOkClick: function(chat, e) {
+		console.log("buttonOkClick");
 		e.preventDefault();
 		chat.disableOkButton(); // chat
 		var inviteeName = chat.$chatWindow.find('h4 a').html();
@@ -79,12 +83,17 @@ FBMeet.Event.Chat.Listener = {
 			"time": "82800", // 23:00 default
 			"description": chat.$text.val(),
 			"invitee": inviteeName
-		});
+		};
 		console.log("FBMeet.Event.add(" + params + ")");
 	},
 
 	buttonDoneClick: function(chat, e) {
+		console.log("buttonDoneClick");
     	$slide.slideUp(200);
+	},
+
+	doNothing: function(chat, e) {
+		e.stopPropagation();
 	},
 
 	//TODO: Implement

@@ -10,16 +10,18 @@
     "storage"
   ],
   "background": {
-    "scripts": ["helper/authorizer.js"]
+    "scripts": ["model/authorizer.js"]
   },
   "content_scripts": [
     {
       "matches": ["*://www.facebook.com/", "*://www.facebook.com/*"],
+      "css": ["view/style.css"],
       "js": [
         "lib/lib.js", 
         "lib/jquery.js", 
         "init.js", 
-        "api/event.js", 
+        "model/event.js",   
+        "view/listener.js",
         "view/chat.js",
         "view/load.js"
       ]

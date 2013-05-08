@@ -4,14 +4,14 @@ $(document).ready(function(e) {
 	var length = $tabs.children().length;
 		
 	$tabs.children().each(function(i, item) {
-		ChatWindow.build($(item));
+		FBMeet.Chat.Window.build($(item));
 	});
 
 	var observer = new WebKitMutationObserver(function() {
 		var counter = $tabs.children().length;
 		var instances = FBMeet.Chat.Window.instances;
 		if (counter > instances)
-			ChatWindow.build($tabs.children(':first'));
+			FBMeet.Chat.Window.build($tabs.children(':first'));
 	});
 
 	observer.observe($tabs[0], {'childList': true});

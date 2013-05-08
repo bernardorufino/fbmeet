@@ -4,7 +4,7 @@ FBMeet.Chat.Window = prototype({
     instances: 0,
 
     build: function($chatWindow) {
-        instances += 1;
+        this.instances += 1;
         return new this($chatWindow);
     }
 
@@ -41,10 +41,10 @@ FBMeet.Chat.Window = prototype({
     	this.createElements();
     	this.findElements();
     	this.appendElements();
-    	this.appendHusky(); 
+        this.setListeners();
     },
 
-    appendElements: function() {
+    appendElements: function() { 
     	this.$chatWindow.find('._1sk5') 
     		.append(this.$slide)
     		.append(this.$friendSlide); // The hell is that?
@@ -53,10 +53,10 @@ FBMeet.Chat.Window = prototype({
     },
 
     createElements: function() {
-    	this.$btn = $('<a class="button meet-trigger" style="background-image: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png); width: 15px; height: 16px; margin-top: 4px; margin-right: 2px;"></a>');
+    	this.$btn = $('<a class="button meet-trigger"></a>');
     	this.$slide = $('<div class="_1sk6 meet-html" style="bottom: 0px; width: 238px; height: 89px; border-bottom-width: 1px; display: none;border-left-width: 1px;">      <div class="_54_-">        <div class = "meet-upButtons" style="margin-bottom: 5px;margin-top: 3px;">          <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 0px;width: 66px;">            <span class="firstItem lastItem uiButtonGroupItem buttonItem" style="width: 66px;">              <a class="uiButton uiButtonLarge uiButtonOverlay meet-today" role="button" style="width: 50px;">                <span class="uiButtonText">Today</span>              </a>            </span>          </span>          <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 1px;">            <span class="firstItem lastItem uiButtonGroupItem buttonItem">              <a class="uiButton uiButtonLarge uiButtonOverlay meet-tomorrow" role="button">                <span class="uiButtonText">Tomorrow</span>              </a>            </span>          </span>          <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 1px;width: 66px;">            <span class="firstItem lastItem uiButtonGroupItem buttonItem" style="">              <a class="uiButton uiButtonLarge uiButtonDepressed meet-soon" role="button" style="width: 50px;">                <span class="uiButtonText">Soon</span>              </a>            </span>          </span>        </div>        <input style="width: 220px;margin-bottom: 4px;" value="Let\'s Hangout" class="inputtext textInput DOMControl_placeholder meet-text" type="text"><input style="width: 220px;margin-bottom: 4px; display: none" placeholder="Location" class="inputtext textInput DOMControl_placeholder meet-loc" type="text">   <a class="meet-loc-btn" href="#" style="vertical-align: -webkit-baseline-middle;">+ Location</a>  <a class="meet-friends-btn" href="#" style="vertical-align: -webkit-baseline-middle; display: none">+ Friends</a>   <label class="uiButton uiButtonConfirm meet-ok" style="width: 64px;float: right;">          <input value="OK" type="submit">        </label>   <label class="close uiButton uiButtonConfirm meet-done" style="width: 12px; float: right; display: none;">  <input value="&times;" type="submit" style="font-size: 15px;">        </label>   </div>    </div>');
     	this.$friendSlide = $('<div class="_1sk6 meet-html" style="display: none; bottom: 0px; width: 238px;  border-bottom-width: 1px; border-left-width: 1px;">      <div class="_54_-">        <div style="margin-bottom: 5px;margin-top: 3px;">          <span style="margin-left: 3px;">Drag here some friends!</span>        </div>        <div class="meet-dropbag" style="width:215px; border:1px solid black; height:65px; padding:3px; margin-left: 3px; margin-bottom: 6px; background-color: white;">        </div>        <label class="uiButton uiButtonConfirm meet-ok" style="width: 77px;margin-left: 3px;margin-right: 33px;margin-bottom: 3px;">          <input value="OK" type="submit">        </label>        <label class="uiButton uiButtonConfirm meet-cancel" style="width: 77px;">          <input value="Cancel" type="submit">        </label>      </div>    </div>');
-    	this.$wrap = $('<div style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="fbMeet" data-tooltip-alignh="center" id="js_48"></div>');
+    	this.$wrap = $('<div style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="FBMeet" data-tooltip-alignh="center" id="js_48"></div>');
     },
 
     findElements: function() {
@@ -86,6 +86,7 @@ FBMeet.Chat.Window = prototype({
         this.$cancelFriends.click(this.buttonCancelFriendsClick.curry(this));
         this.$ok.click(this.buttonOkClick.curry(this));
         this.$done.click(this.buttonDoneClick.curry(this));
+        this.$btn.bind('click.fbmeet', this.buttonClick.curry(this));
         this.$input.keyup(this.registerChatInput.curry(this));
     },
 
@@ -114,6 +115,15 @@ FBMeet.Chat.Window = prototype({
     	this.$btn.css('background-image', 'url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif")');
     },
 
+    eventCallback: function() {
+        this.$btn.addClass("finished");
+        this.$btn.unbind('click.fbmeet');
+        this.$btn.bind('click.fbmeet', this.doNothing.curry(this));
+        //...
+        //TODO: Finish this implementation
+        // find a way to group jquery elements together
+    },
+
     whenButtonListener: function(chat, when) {
     	chat.when = when;
     	chat.$today.toggleClass('uiButtonOverlay', when != 'today').toggleClass('uiButtonDepressed', when == 'today');
@@ -122,4 +132,4 @@ FBMeet.Chat.Window = prototype({
     }
 
 
-}).includes(FBMeet.Event.Chat.Listener);
+}).includes(FBMeet.Chat.Listener);

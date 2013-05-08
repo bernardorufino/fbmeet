@@ -1,0 +1,11 @@
+.meet-trigger {
+	background-image: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png);
+	background-repeat: no-repeat;
+	width: 15px;
+	height: 16px; 
+	margin-top: 4px;
+	margin-right: 2px;
+}
+.meet-trigger.finished {
+	
+}
