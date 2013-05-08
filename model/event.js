@@ -1,5 +1,8 @@
-FBMeet.Events = {
+FBMeet.Event = {
 
-  
+	//TODO...
+	add: function(attributes){
+
+	}
 
 };

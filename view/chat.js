@@ -18,7 +18,8 @@ FBMeet.Chat.Window = prototype({
     $friendsBtn: null,
     $okFriends: null,
     $cancelFriends: null,
-    $dropBag: null,
+    $dropbag: null,
+    dropbag: null,
     $ok: null,
     $done: null,
 
@@ -28,6 +29,14 @@ FBMeet.Chat.Window = prototype({
     	this.$chatWindow = $chatWindow;
     	this.createElements();
     	this.findElements();
+    	this.appendHusky(); // The hell is that?
+    },
+
+    // WTF??
+    appendHusky: function() {
+    	$chatWindow.find('._1sk5')
+    		.append($slide)
+    		.append($friendSlide);
     },
 
     createElements: function() {
@@ -46,7 +55,8 @@ FBMeet.Chat.Window = prototype({
     	this.$friendsBtn = $slide.find('.meet-friends-btn');
     	this.$okFriends = $slide.find('.meet-ok');
     	this.$cancelFriends = $slide.find('.meet-cancel');
-    	this.$dropBag = $slide.find('.meet-dropbag');
+    	this.$dropbag = $slide.find('.meet-dropbag');
+    	this.dropbag = this.$dropbag[0];
     	this.$ok = $slide.find('.meet-ok');
     	this.$done = $slide.find('.meet-done');
     },
@@ -55,12 +65,85 @@ FBMeet.Chat.Window = prototype({
     	$today.click(this.whenButtonListener.curry('today'));
     	$tomorrow.click(this.whenButtonListener.curry('tomorrow'));
     	$soon.click(this.whenButtonListener.curry('soon'));
-    	var chat = this;
-    	$locBtn.click(function() {
-    		chat.animate({height: '114px'}, 250);
-   			$loc.show(300);
-    		$locBtn.hide(200);
-    	});
+    	with (this) { 
+    	// Binds chat object attributes to locals (Just for copy 'n paste croata's code, refactor it!)
+    	//TODO: change calls to locals to fields of this obj (correctly localed as chat for e.g)
+	    	// Location button?
+	    	$locBtn.click(function() {
+	    		$slide.animate({height: '114px'}, 250);
+	   			$loc.show(300);
+	    		$locBtn.hide(200);
+	    	});
+
+	    	// Dran 'n Drop
+	    	this.dropbag.addEventListener("drop", FBMeet.Chat.DragDrop.drop, false);
+	    	this.dropbag.addEventListener("dragover", FBMeet.Chat.DragDrop.dragover, false);
+			$friendsBtn.click(function() {
+				$slide.slideUp(200);
+				$friendSlide.slideDown(270);
+				$.each($('.uiScrollableAreaBody li'), function(index, item) {
+					var $pic = $(item).find('.pic.img');
+					if ($pic && $pic.length > 0) {
+				        $pic.attr({id: 'meet-draggable-' + index, draggable: true});
+				        $pic[0].addEventListener("dragstart", FBMeet.Chat.DragDrop.dragstart, false);
+					}
+				});
+			});	    	
+	    	
+	    	// Cancel button when draggin friends
+			$cancelFriends.click(function() {
+				$dropbag.html("");
+				$friendSlide.slideUp(200);
+				$slide.slideDown(270);
+			});
+
+			// Add event ok button
+			$ok.click(function() {
+				e.preventDefault();
+				disableOkButton(); // chat
+				var inviteeName = $chatWindow.find('h4 a').html();
+				FBMeet.Event.add({
+					"name": $text.val(),
+					"location": $loc.val(),
+					"date": dateString(),
+					"time": "82800", // 23:00 default
+					"description": $text.val(),
+					"invitee": inviteeName
+				});
+			});
+
+			// Done butto
+			$done.click(function() {
+				$slide.slideUp(200);
+			});
+
+
+    	}
+    },
+
+    dateString: function() {
+    	var date = new Date();
+    	if (this.when == 'tomorrow') 
+    		date.setDate(date.getDate() + 1);
+    	var dd = date.getDate();
+    	var mm = date.getMonth() + 1; // January is 0!
+    	var yyyy = date.getFullYear();
+    	dd = (dd < 10) ? '0' + dd : dd; // Will coerce after
+    	mm = (mm < 10) ? '0' + mm : mm; // Will coerce after
+    	return mm + '/' + dd + '/' + yyyy;
+    },
+
+    disableOkButton: function() {
+    	this.$ok.css({
+    		'cursor': 'default'
+    	}).unbind('click')
+
+    	this.$ok.children().css({
+    		'color': '#BBB',
+    		'cursor': 'default'
+    	}).unbind('click');
+
+    	this.$btn.css('background-image', 'url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif")');
     },
 
     whenButtonListener: function(when) {
