@@ -1,14 +1,13 @@
 /**
  * HTML templates for the chat windows
  */
-FBMeet.Chat.Templates = (function(){
-  var begin = 16;
-  var end = -3;
+FBMeet.Chat.Templates = stringfyProperties(16, -3, {
+
+    triggerBtn: function() {/*
+<a class="button meet-trigger"></a>
+    */},
   
-  return {
-    triggerBtn: '<a class="button meet-trigger"></a>',
-  
-    slide: function (){/*
+    slide: function() {/*
 <div class="_1sk6 meet-slide" style="height: 89px;">
   <div class="_54_-">
     <div class = "meet-upButtons">
@@ -45,9 +44,10 @@ FBMeet.Chat.Templates = (function(){
       <input value="&times;" type="submit" style="font-size: 15px;">
     </label>
   </div>
-</div>*/}.toString().slice(begin, end),
+</div>
+    */},
   
-    friendSlide: function (){/*
+    friendSlide: function() {/*
 <div class="_1sk6 meet-slide">
   <div class="_54_-">
     <div style="margin-bottom: 5px;margin-top: 3px;">
@@ -61,8 +61,12 @@ FBMeet.Chat.Templates = (function(){
       <input value="Cancel" type="submit">
     </label>
   </div>
-</div>*/}.toString().slice(begin, end),
+</div>
+    */},
 
-    wrap: '<div style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="FBMeet" data-tooltip-alignh="center" id="js_48"></div>'
-  };
-})();
+    wrap: function() {/*
+<div style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="FBMeet" data-tooltip-alignh="center" id="js_48">
+</div>
+    */}
+
+});
