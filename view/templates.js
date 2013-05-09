@@ -1,5 +1,5 @@
 /**
- * HTML templates for the chat windows
+ * HTML templates for the chat windows.
  */
 FBMeet.Chat.Templates = stringfyProperties(16, -3, {
 

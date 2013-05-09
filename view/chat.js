@@ -1,4 +1,6 @@
-// Represents a chat window
+/**
+* Represents a chat window in the layout and its modifications.
+*/
 FBMeet.Chat.Window = createClass({ 
 
     instances: 0,
