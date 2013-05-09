@@ -100,5 +100,4 @@ FBMeet.Chat.Listener = {
 	registerChatInput: function(chat, e) {
 		console.log("implement registerChatInput!")
 	}
-
 };
