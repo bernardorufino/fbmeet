@@ -1,6 +1,6 @@
 $(document).ready(function(e) {
 	var $tabs = $('#ChatTabsPagelet .fbNubGroup.clearfix.videoCallEnabled');
-	
+
   // For chat windows that are already there when the page loads
 	$tabs.children().each(function(i, item) {
 		FBMeet.Chat.Window.build($(item));
