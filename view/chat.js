@@ -71,21 +71,21 @@ FBMeet.Chat.Window = prototype({
     	this.dropbag = this.$dropbag[0];
     	this.$ok = this.$slide.find('.meet-ok');
     	this.$done = this.$slide.find('.meet-done');
-      this.$input = this.$chatWindow.find('textarea.uiTextareaAutogrow');
+        this.$input = this.$chatWindow.find('textarea.uiTextareaAutogrow');
     },
 
     //TODO: Instead of curry, use data argument for events, from jQuery
     setListeners: function() {
-    	this.$today.click(this.whenButtonListener.curry(this, 'today'));
-    	this.$tomorrow.click(this.whenButtonListener.curry(this, 'tomorrow'));
-    	this.$soon.click(this.whenButtonListener.curry(this, 'soon'));
-      this.$locBtn.click(this.buttonLocationClick.curry(this));
-      this.$friendsBtn.click(this.buttonFriendsClick.curry(this));
-      this.$cancelFriends.click(this.buttonCancelFriendsClick.curry(this));
-      this.$ok.click(this.buttonOkClick.curry(this));
-      this.$done.click(this.buttonDoneClick.curry(this));
-      this.$btn.bind('click.fbmeet', this.buttonClick.curry(this));
-      this.$input.keyup(this.registerChatInput.curry(this));
+        this.$today.click(this.whenButtonListener.curry(this, 'today'));
+        this.$tomorrow.click(this.whenButtonListener.curry(this, 'tomorrow'));
+        this.$soon.click(this.whenButtonListener.curry(this, 'soon'));
+        this.$locBtn.click(this.buttonLocationClick.curry(this));
+        this.$friendsBtn.click(this.buttonFriendsClick.curry(this));
+        this.$cancelFriends.click(this.buttonCancelFriendsClick.curry(this));
+        this.$ok.click(this.buttonOkClick.curry(this));
+        this.$done.click(this.buttonDoneClick.curry(this));
+        this.$btn.bind('click.fbmeet', this.buttonClick.curry(this));
+        this.$input.keyup(this.registerChatInput.curry(this));
     },
 
     dateString: function() {
