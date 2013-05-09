@@ -9,3 +9,35 @@
 .meet-trigger.finished {
 	
 }
+
+.meet-slide {
+  bottom: 0px;
+  width: 238px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  display: none;
+}
+
+.meet-upButtons {
+  margin-bottom: 5px;
+  margin-top: 3px;
+}
+
+.meet-text, .meet-loc {
+  width: 220px;
+  margin-bottom: 4px !important;
+}
+
+.meet-loc-btn, .meet-friends-btn {
+  vertical-align: -webkit-baseline-middle;
+}
+
+.meet-dropbag {
+  width: 215px;
+  border: 1px solid black;
+  height: 65px;
+  padding: 3px;
+  margin-left: 3px;
+  margin-bottom: 6px;
+  background-color: white;
+}
