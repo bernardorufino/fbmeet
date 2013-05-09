@@ -87,6 +87,7 @@ FBMeet.Chat.Listener = {
 			"invitee": inviteeName
 		};
 		console.log("FBMeet.Event.add(" + params + ")");
+		this.eventCallback();
 	},
 
 	buttonDoneClick: function(chat, e) {
