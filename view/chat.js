@@ -1,6 +1,8 @@
-// Represents a chat window
-FBMeet.Chat.Window = prototype({ 
-    // Class properties (aka static in Java)
+/**
+* Represents a chat window in the layout and its modifications.
+*/
+FBMeet.Chat.Window = createClass({ 
+
     instances: 0,
 
     build: function($chatWindow) {
@@ -8,10 +10,8 @@ FBMeet.Chat.Window = prototype({
         return new this($chatWindow);
     }
 
-}, {
-    // Instance properties
+}, {// Class properties above, instance properties below 
 
-    // Fields
     when: 'soon',
     $btn: null,
     $wrap: null,
@@ -31,8 +31,6 @@ FBMeet.Chat.Window = prototype({
     dropbag: null,
     $ok: null,
     $done: null,
-
-    // Methods
 
     initialize: function($chatWindow) {
     	this.$chatWindow = $chatWindow;
@@ -128,4 +126,5 @@ FBMeet.Chat.Window = prototype({
     	chat.$tomorrow.toggleClass('uiButtonOverlay', when != 'tomorrow').toggleClass('uiButtonDepressed', when == 'tomorrow');
     	chat.$soon.toggleClass('uiButtonOverlay', when != 'soon').toggleClass('uiButtonDepressed', when == 'soon');
     }
+
 }).includes(FBMeet.Chat.Listener);

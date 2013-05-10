@@ -1,4 +1,11 @@
-FBMeetAuth = {
+// Since authorizer.js is a background script, FBMeet does not override FBMeet that
+// exists in content script (init.js)
+FBMeet = {};
+
+/**
+* Authentication ...
+*/
+FBMeet.Auth = {
     var successURL = 'www.facebook.com/connect/login_success.html';
     var tokenAvailable = false;
 

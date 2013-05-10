@@ -17,7 +17,7 @@
       "matches": ["*://www.facebook.com/", "*://www.facebook.com/*"],
       "css": ["view/style.css"],
       "js": [
-        "lib/lib.js", 
+        "lib/utils.js", 
         "lib/jquery.js", 
         "init.js", 
         "model/event.js",

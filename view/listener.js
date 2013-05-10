@@ -1,6 +1,8 @@
+/**
+* Sample extension of class FBMeet.Event.Chat.Window, all methods here
+* are gonna be included in it (as instance methods). Just for organization.
+*/
 FBMeet.Chat.Listener = {
-
-	// All methods here are included in FBMeet.Event.Chat.Window object
 
 	buttonClick: function(chat, e) {
 		e.stopPropagation();
@@ -85,6 +87,7 @@ FBMeet.Chat.Listener = {
 			"invitee": inviteeName
 		};
 		console.log("FBMeet.Event.add(" + params + ")");
+		this.eventCallback();
 	},
 
 	buttonDoneClick: function(chat, e) {
@@ -100,4 +103,5 @@ FBMeet.Chat.Listener = {
 	registerChatInput: function(chat, e) {
 		console.log("implement registerChatInput!")
 	}
+
 };
