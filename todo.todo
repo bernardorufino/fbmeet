@@ -1,0 +1,7 @@
+FRONT:
+!- Check if all event parameters are being passed
+!- Fix drag'n drop
+?- Refactor inline style (templates.js) to stylesheet (style.css)
+
+BACK:
+!- Implement event creation with FB API!
