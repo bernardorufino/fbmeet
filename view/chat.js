@@ -10,7 +10,7 @@ FBMeet.Chat.Window = createClass({
         return new this($chatWindow);
     }
 
-}, {// Class properties above, instance properties below 
+}, { // Class properties above, instance properties below 
 
     when: 'soon',
     $btn: null,
@@ -98,26 +98,19 @@ FBMeet.Chat.Window = createClass({
     	return mm + '/' + dd + '/' + yyyy;
     },
 
-    disableOkButton: function() {
-    	this.$ok.css({
-    		'cursor': 'default'
-    	}).unbind('click')
-
-    	this.$ok.children().css({
-    		'color': '#BBB',
-    		'cursor': 'default'
-    	}).unbind('click');
-
-    	this.$btn.css('background-image', 'url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif")');
-    },
-
-    eventCallback: function() {
+    eventCallback: function(event) {
+        this.$btn.removeClass("loading");
         this.$btn.addClass("finished");
         this.$btn.unbind('click.fbmeet');
         this.$btn.bind('click.fbmeet', this.doNothing.curry(this));
-        //...
-        //TODO: Finish this implementation
-        // find a way to group jquery elements together
+        this.$slide.find('.meet-create').hide(200);
+        this.$slide.animate({height: '27px'}, 250);
+        this.$slide.find('.meet-invite').show(200);
+        this.$chatWindow.find('textarea.uiTextareaAutogrow').val(event.url);
+    },
+
+    getEventCallback: function() {
+        return this.eventCallback.bind(this);
     },
 
     whenButtonListener: function(chat, when) {

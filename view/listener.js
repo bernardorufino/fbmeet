@@ -73,12 +73,24 @@ FBMeet.Chat.Listener = {
 		chat.$slide.slideDown(270);		
 	},
 
+	updateSlideToLoading: function() {
+		this.$ok.css({
+    		'cursor': 'default'
+    	}).unbind('click')
+
+    	this.$ok.children().css({
+    		'color': '#BBB',
+    		'cursor': 'default'
+    	}).unbind('click');
+
+    	this.$btn.addClass('loading');
+	},
+
 	buttonOkClick: function(chat, e) {
-		console.log("buttonOkClick");
 		e.preventDefault();
-		chat.disableOkButton(); // chat
+		chat.updateSlideToLoading(); // chat
 		var inviteeName = chat.$chatWindow.find('h4 a').html();
-		var params = {
+		var attributes = {
 			"name": chat.$text.val(),
 			"location": chat.$loc.val(),
 			"date": chat.dateString(),
@@ -86,13 +98,11 @@ FBMeet.Chat.Listener = {
 			"description": chat.$text.val(),
 			"invitee": inviteeName
 		};
-		console.log("FBMeet.Event.add(" + params + ")");
-		this.eventCallback();
+		var event = FBMeet.Event.create(attributes, chat.getEventCallback());
 	},
 
 	buttonDoneClick: function(chat, e) {
-		console.log("buttonDoneClick");
-    	$slide.slideUp(200);
+    	chat.$slide.slideUp(200);
 	},
 
 	doNothing: function(chat, e) {

@@ -10,7 +10,7 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
     slide: function() {/*
 <div class="_1sk6 meet-slide" style="height: 89px;">
   <div class="_54_-">
-    <div class = "meet-upButtons">
+    <div class = "meet-upButtons meet-create">
       <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 0px; width: 66px;">
         <span class="firstItem lastItem uiButtonGroupItem buttonItem" style="width: 66px;">
           <a class="uiButton uiButtonLarge uiButtonOverlay meet-today" role="button" style="width: 50px;">
@@ -33,14 +33,14 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
         </span>
       </span>
     </div>
-    <input class="inputtext textInput DOMControl_placeholder meet-text" type="text" value="Let's Hangout">
-    <input class="inputtext textInput DOMControl_placeholder meet-loc" type="text" placeholder="Location" style="display: none" >
-    <a class="meet-loc-btn" href="#">+ Location</a>
-    <a class="meet-friends-btn" href="#" style="display: none">+ Friends</a>
-    <label class="uiButton uiButtonConfirm meet-ok" style="width: 64px; float: right;">
+    <input class="inputtext textInput DOMControl_placeholder meet-create meet-text" type="text" value="Let's Hangout">
+    <input class="inputtext textInput DOMControl_placeholder meet-create meet-loc" type="text" placeholder="Location" style="display: none" >
+    <a class="meet-create meet-loc-btn" href="#">+ Location</a>
+    <a class="meet-invite meet-friends-btn" href="#" style="display: none">+ Friends</a>
+    <label class="uiButton uiButtonConfirm meet-create meet-ok" style="width: 64px; float: right;">
       <input value="OK" type="submit">
     </label>
-    <label class="close uiButton uiButtonConfirm meet-done" style="width: 12px; float: right; display: none;">
+    <label class="close uiButton uiButtonConfirm meet-invite meet-done" style="width: 12px; float: right; display: none;">
       <input value="&times;" type="submit" style="font-size: 15px;">
     </label>
   </div>

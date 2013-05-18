@@ -1,13 +1,16 @@
 .meet-trigger {
-	background-image: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png);
+	background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png");
 	background-repeat: no-repeat;
 	width: 15px;
 	height: 16px; 
 	margin-top: 4px;
 	margin-right: 2px;
 }
+.meet-trigger.loading {
+  background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif");
+}
 .meet-trigger.finished {
-	
+	background-image: url("https://raw.github.com/bernardorufino/site/master/event_ok.png");
 }
 
 .meet-slide {
@@ -16,6 +19,10 @@
   border-bottom-width: 1px;
   border-left-width: 1px;
   display: none;
+}
+
+.meet-slide.add-friends {
+  height: 27px;
 }
 
 .meet-upButtons {
