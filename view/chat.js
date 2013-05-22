@@ -84,6 +84,10 @@ FBMeet.Chat.Window = createClass({
         this.$done.click(this.buttonDoneClick.curry(this));
         this.$btn.bind('click.fbmeet', this.buttonClick.curry(this));
         this.$input.keyup(this.registerChatInput.curry(this));
+        var dropbag = this.$dropbag[0];
+        dropbag.addEventListener('drop', this.dropbagDrop.curry(this), false);
+        dropbag.addEventListener('dragover', this.dropbagDragOver.curry(this), false);
+
     },
 
     dateString: function() {

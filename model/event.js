@@ -6,6 +6,7 @@ FBMeet.Event = createClass({
     //TODO...
     create: function(attributes, callback){
     	var event = new FBMeet.Event("urlhere");
+        console.log(attributes);
     	callback(event);
     	return event;
     }
