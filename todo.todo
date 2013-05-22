@@ -1,4 +1,5 @@
 FRONT:
+!- FIX init.js around l.14 (FBMeet.initAPI not being called)
 !- Check if all event parameters are being passed
 !- Fix drag'n drop
 ?- Refactor inline style (templates.js) to stylesheet (style.css)
