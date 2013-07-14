@@ -7,24 +7,30 @@
 
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "*://*/*"
   ],
   "background": {
-    "scripts": ["model/authorizer.js"]
+    "scripts": [
+      "lib/utils.js",
+      "lib/purl.js", 
+      "model/authorizer.js"
+    ]
   },
   "content_scripts": [
     {
-      "matches": ["*://www.facebook.com/", "*://www.facebook.com/*"],
+      "matches": ["*://www.facebook.com/*"],
+      "exclude_matches": ["*://www.facebook.com/connect/*", "*://www.facebook.com/dialog/*"],
       "css": ["view/style.css"],
       "js": [
         "lib/utils.js", 
         "lib/jquery.js", 
+        "lib/fbutils.js", 
         "init.js", 
         "model/event.js",
         "view/templates.js",
         "view/listener.js",
-        "view/chat.js",
-        "view/load.js"
+        "view/chat.js"
       ]
     }
   ]

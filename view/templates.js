@@ -11,9 +11,9 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
 <div class="_1sk6 meet-slide" style="height: 89px;">
   <div class="_54_-">
     <div class = "meet-upButtons meet-create">
-      <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 0px; width: 66px;">
-        <span class="firstItem lastItem uiButtonGroupItem buttonItem" style="width: 66px;">
-          <a class="uiButton uiButtonLarge uiButtonOverlay meet-today" role="button" style="width: 50px;">
+      <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 0px;">
+        <span class="firstItem lastItem uiButtonGroupItem buttonItem">
+          <a class="uiButton uiButtonLarge uiButtonOverlay meet-today" role="button">
             <span class="uiButtonText">Today</span>
           </a>
         </span>
@@ -25,9 +25,9 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
           </a>
         </span>
       </span>
-      <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 1px; width: 66px;">
-        <span class="firstItem lastItem uiButtonGroupItem buttonItem" style="">
-          <a class="uiButton uiButtonLarge uiButtonDepressed meet-soon" role="button" style="width: 50px;">
+      <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 1px;">
+        <span class="firstItem lastItem uiButtonGroupItem buttonItem">
+          <a class="uiButton uiButtonLarge uiButtonDepressed meet-soon" role="button">
             <span class="uiButtonText">Soon</span>
           </a>
         </span>

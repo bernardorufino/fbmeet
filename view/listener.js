@@ -1,6 +1,6 @@
 /**
 * Sample extension of class FBMeet.Event.Chat.Window, all methods here
-* are gonna be included in it (as instance methods). Just for organization.
+* are gonna be included there (as instance methods). Just for organization.
 */
 FBMeet.Chat.Listener = {
 
@@ -89,14 +89,16 @@ FBMeet.Chat.Listener = {
 	buttonOkClick: function(chat, e) {
 		e.preventDefault();
 		chat.updateSlideToLoading(); // chat
-		var inviteeName = chat.$chatWindow.find('h4 a').html();
+		var inviteeUrl = chat.$chatWindow.find('h4 a').attr('href');
+		var inviteeId = FB.extractId(inviteeUrl);
 		var attributes = {
 			"name": chat.$text.val(),
 			"location": chat.$loc.val(),
 			"date": chat.dateString(),
-			"time": "82800", // 23:00 default
+			// It's not needed to specify time anymore
+			//"time": "82800", // 23:00 default
 			"description": chat.$text.val(),
-			"invitee": inviteeName
+			"invitee": inviteeId
 		};
 		var event = FBMeet.Event.create(attributes, chat.getEventCallback());
 	},

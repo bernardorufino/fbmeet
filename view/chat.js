@@ -65,7 +65,7 @@ FBMeet.Chat.Window = createClass({
     	this.$friendsBtn = this.$slide.find('.meet-friends-btn');
     	this.$okFriends = this.$slide.find('.meet-ok');
     	this.$cancelFriends = this.$slide.find('.meet-cancel');
-    	this.$dropbag = this.$slide.find('.meet-dropbag');
+    	this.$dropbag = this.$friendSlide.find('.meet-dropbag');
     	this.dropbag = this.$dropbag[0];
     	this.$ok = this.$slide.find('.meet-ok');
     	this.$done = this.$slide.find('.meet-done');
@@ -99,10 +99,11 @@ FBMeet.Chat.Window = createClass({
     	var yyyy = date.getFullYear();
     	dd = (dd < 10) ? '0' + dd : dd; // Will coerce after
     	mm = (mm < 10) ? '0' + mm : mm; // Will coerce after
-    	return mm + '/' + dd + '/' + yyyy;
+        return yyyy + '-' + mm + '-' + dd;
     },
 
     eventCallback: function(event) {
+        console.log('eventCallback()');
         this.$btn.removeClass("loading");
         this.$btn.addClass("finished");
         this.$btn.unbind('click.fbmeet');

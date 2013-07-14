@@ -15,7 +15,7 @@
 
 .meet-slide {
   bottom: 0px;
-  width: 238px;
+  width: 258px;
   border-bottom-width: 1px;
   border-left-width: 1px;
   display: none;
@@ -31,8 +31,16 @@
 }
 
 .meet-text, .meet-loc {
-  width: 220px;
+  width: 240px;
   margin-bottom: 4px !important;
+}
+
+.meet-today, .meet-soon {
+  width: 58px;
+}
+
+.meet-tomorrow {
+  width: 70px;
 }
 
 .meet-loc-btn, .meet-friends-btn {
