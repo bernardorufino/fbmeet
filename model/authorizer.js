@@ -26,19 +26,19 @@ FBMeet.Auth = {
         var key = FBMeet.Auth.localStorageTokenKey;
         var token = localStorage[key];
         if (data.request === 'getToken') {
-            console.log('BS: received "getToken" message from CS, returning token = ' + token);
+            console.log('FBMeet: [BS] received "getToken" message from CS, returning token = ' + token);
             FBMeet.Auth.sendTokenToContentScript();
         } else if (data.request === 'newToken') {
-            console.log('BS: received "newToken" message from CS, getting new one');
+            console.log('FBMeet: [BS] received "newToken" message from CS, getting new one');
             FBMeet.Auth.retrieveToken();
         }
     },
 
     sendTokenToContentScript: function() {
-        console.log('BS: Sending token to CS');
+        console.log('FBMeet: [BS] Sending token to CS');
         var key = FBMeet.Auth.localStorageTokenKey;
         var token = localStorage[key];
-        console.log('BS: token = ' + token);
+        console.log('FBMeet: [BS] token = ' + token);
         chrome.tabs.query({
             url: '*://www.facebook.com/*'
         }, function(tabs) {
@@ -54,7 +54,7 @@ FBMeet.Auth = {
     hasToken: function() { return !!localStorage[this.localStorageTokenKey]; },
 
     retrieveToken: function() {
-        console.log('BS: Retrieving new token');
+        console.log('FBMeet: [BS] Retrieving new token');
         var key = FBMeet.Auth.localStorageTokenKey;
         chrome.tabs.onUpdated.addListener(this.updatedTabListener);
         delete localStorage[key];
@@ -62,7 +62,7 @@ FBMeet.Auth = {
     },
 
     openAuthTab: function() {
-        console.log('BS: Opening new tab')
+        console.log('FBMeet: [BS] Opening new tab')
         // In order to place the new tab next to the current
         var self = this;
         chrome.tabs.getSelected(null, function(tab) {
@@ -81,14 +81,14 @@ FBMeet.Auth = {
         var key = FBMeet.Auth.localStorageTokenKey;
         if (!localStorage[key]) {
             if (tab.url.startsWith(FBMeet.Auth.redirectUri)) {
-                console.log('BS: New useful tab detected, proceding to gather token');
+                console.log('FBMeet: [BS] New useful tab detected, proceding to gather token');
                 var token = purl(tab.url).fparam('access_token');
                 if (token) {
-                    console.log('BS: Got valid token, sending it to CS');
+                    console.log('FBMeet: [BS] Got valid token, sending it to CS');
                     localStorage[key] = token;
                     FBMeet.Auth.sendTokenToContentScript();
                 } else {
-                    console.log('BS: Got INvalid token, token = ' + token);
+                    console.log('FBMeet: [BS] Got INvalid token, token = ' + token);
                 }
                 chrome.tabs.onUpdated.removeListener(FBMeet.Auth.updatedTabListener);
                 chrome.tabs.remove(tabId);

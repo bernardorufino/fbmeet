@@ -1,24 +1,37 @@
-.meet-trigger {
+/* #facebook for more specificity in order to mantain margin property */
+/* Keeping normal selector in case they decide to change or remove the id */
+
+#facebook .meet-trigger, .meet-trigger {
 	background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png");
 	background-repeat: no-repeat;
 	width: 15px;
 	height: 16px; 
-	margin-top: 4px;
+	margin: 5px 3px 0 0;
 	margin-right: 2px;
 }
-.meet-trigger.loading {
+
+
+#facebook .meet-trigger.loading, .meet-trigger.loading {
+  margin: 4px 3px 0 0;
   background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif");
 }
-.meet-trigger.finished {
+
+#facebook .meet-trigger.finished, .meet-trigger.finished {
+  margin: 4px 3px 0 0;
 	background-image: url("https://raw.github.com/bernardorufino/site/master/event_ok.png");
 }
 
 .meet-slide {
   bottom: 0px;
   width: 258px;
+  overflow: hidden !important;
   border-bottom-width: 1px;
   border-left-width: 1px;
   display: none;
+}
+
+.meet-new-event {
+  /* min-height: 85px; Breaks slideUp/Down animations =( */
 }
 
 .meet-slide.add-friends {
@@ -28,6 +41,11 @@
 .meet-upButtons {
   margin-bottom: 5px;
   margin-top: 3px;
+}
+
+.meet-new-event .meet-ok {
+  width: 64px;
+  float: right;
 }
 
 .meet-text, .meet-loc {
@@ -47,12 +65,57 @@
   vertical-align: -webkit-baseline-middle;
 }
 
+.meet-invite.meet-done {
+  width: 12px; 
+  float: right;
+  display: none;
+}
+.meet-invite.meet-friends-btn {
+  display: none;
+}
+
 .meet-dropbag {
-  width: 215px;
-  border: 1px solid black;
-  height: 65px;
-  padding: 3px;
-  margin-left: 3px;
-  margin-bottom: 6px;
+  width: 235px;
+  border: 1px solid #C9D0DA;
+  height: 31px;
+  /* No padding in the left, because images already have margin (oddly they add up, maybe because img is inline) */
+  padding: 3px 3px 0px 0;
+  margin: 5px 0 6px 3px;
   background-color: white;
+  overflow: auto;
+}
+
+.meet-dropbag img {
+  margin-left: 3px;
+  height: 28px;
+  width: 28px;
+}
+
+.meet-dropbag.meet-loading {
+  background-color: #CCCCCC;
+  cursor: wait;
+}
+
+.meet-dropbag.meet-loading img {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.meet-drag-message {
+  margin: 3px 0 3px 0;
+  padding-left: 4px;
+}
+
+.meet-event-info {
+  margin: 3px 0 0 4px;
+  color: #999999;
+}
+
+.meet-event-info .name {
+  color: #3B5998;
+  font-weight: bold;
+}
+
+.meet-drop-dismiss {
+  display: none;
 }

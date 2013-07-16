@@ -8,7 +8,7 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
     */},
   
     slide: function() {/*
-<div class="_1sk6 meet-slide" style="height: 89px;">
+<div class="_1sk6 meet-slide meet-new-event" style="height: 89px;">
   <div class="_54_-">
     <div class = "meet-upButtons meet-create">
       <span class="uiButtonGroup mlm uiButtonGroupOverlay" style="margin-left: 0px;">
@@ -33,14 +33,14 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
         </span>
       </span>
     </div>
-    <input class="inputtext textInput DOMControl_placeholder meet-create meet-text" type="text" value="Let's Hangout">
+    <input class="inputtext textInput DOMControl_placeholder meet-create meet-text" type="text" value="Meetup">
     <input class="inputtext textInput DOMControl_placeholder meet-create meet-loc" type="text" placeholder="Location" style="display: none" >
     <a class="meet-create meet-loc-btn" href="#">+ Location</a>
-    <a class="meet-invite meet-friends-btn" href="#" style="display: none">+ Friends</a>
-    <label class="uiButton uiButtonConfirm meet-create meet-ok" style="width: 64px; float: right;">
+    <a class="meet-invite meet-friends-btn" href="#">+ Friends</a>
+    <label class="uiButton uiButtonConfirm meet-create meet-ok">
       <input value="OK" type="submit">
     </label>
-    <label class="close uiButton uiButtonConfirm meet-invite meet-done" style="width: 12px; float: right; display: none;">
+    <label class="close uiButton uiButtonConfirm meet-invite meet-done">
       <input value="&times;" type="submit" style="font-size: 15px;">
     </label>
   </div>
@@ -48,18 +48,18 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
     */},
   
     friendSlide: function() {/*
-<div class="_1sk6 meet-slide">
+<div class="_1sk6 meet-slide meet-friend">
   <div class="_54_-">
-    <div style="margin-bottom: 5px;margin-top: 3px;">
-      <span style="margin-left: 3px;">Drag here some friends!</span>
+    <div class="meet-event-info">
+      <a class="info name" href="#eventUrl">Meetup</a> on <span class="info start_time">02/08/2007</span>
+      <span class="location-wrapper">
+         at <span class="info location">Starbucks</span>
+      </span>
     </div>
     <div class="meet-dropbag"></div>
-    <label class="uiButton uiButtonConfirm meet-ok" style="width: 77px; margin-left: 3px; margin-right: 33px; margin-bottom: 3px;">
-      <input value="OK" type="submit">
-    </label>
-    <label class="uiButton uiButtonConfirm meet-cancel" style="width: 77px;">
-      <input value="Cancel" type="submit">
-    </label>
+    <div class="meet-drag-message">
+      Drag chat friends here! <span class="meet-drop-dismiss">Click them to dismiss</span>
+    </div>
   </div>
 </div>
     */},
