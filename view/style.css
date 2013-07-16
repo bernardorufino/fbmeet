@@ -2,23 +2,24 @@
 /* Keeping normal selector in case they decide to change or remove the id */
 
 #facebook .meet-trigger, .meet-trigger {
-	background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/ZpsGiyaEt12.png");
+  background-image: url("chrome-extension://__MSG_@@extension_id__/res/launch-icon.png");
 	background-repeat: no-repeat;
-	width: 15px;
-	height: 16px; 
-	margin: 5px 3px 0 0;
+	width: 17px;
+	height: 17px; 
+	margin: 4px 3px 0 0;
 	margin-right: 2px;
 }
 
+#facebook .meet-trigger:hover, .meet-trigger:hover {
+  background-image: url("chrome-extension://__MSG_@@extension_id__/res/launch-icon-hover.png");
+}
 
 #facebook .meet-trigger.loading, .meet-trigger.loading {
-  margin: 4px 3px 0 0;
-  background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yk/r/LOOn0JtHNzb.gif");
+  background-image: url("chrome-extension://__MSG_@@extension_id__/res/loading.gif");
 }
 
 #facebook .meet-trigger.finished, .meet-trigger.finished {
-  margin: 4px 3px 0 0;
-	background-image: url("https://raw.github.com/bernardorufino/site/master/event_ok.png");
+  background-image: url("chrome-extension://__MSG_@@extension_id__/res/event-created-icon.png");
 }
 
 .meet-slide {

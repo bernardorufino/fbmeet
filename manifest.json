@@ -33,5 +33,11 @@
         "view/chat.js"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    "res/launch-icon.png",
+    "res/launch-icon-hover.png",
+    "res/event-created-icon.png",
+    "res/loading.gif"
   ]
 }
