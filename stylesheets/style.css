@@ -42,3 +42,10 @@ footer .info {
 img {
 	width: auto;
 }
+
+.fb-like {
+	width: 46px;
+	height: auto;
+	display: block;
+	margin: 25px 0 -115px 0;
+}
