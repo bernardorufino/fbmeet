@@ -1,0 +1,44 @@
+#header_wrap header.inner {
+	padding-left: 200px;
+	background-image: url(../images/logo-fbmeet-composite.png);
+	background-position: left 5px;
+	background-repeat: no-repeat;
+}
+
+#main_content {
+	text-align: justify;
+	padding-top: 15px;
+}
+
+#chrome_store {
+	padding-right:10px;
+	height: 100px;
+	line-height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url(../images/chrome-web-store.png);
+	background-position: right 12px;
+	background-repeat: no-repeat;
+	background-size: 110px 110px;
+}
+
+#chrome_store_wrapper {
+	text-align: center;
+}
+
+#screenshot_controls {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+#end {
+	text-align: center;
+}
+
+footer .info {
+	text-align: center;
+}
+
+img {
+	width: auto;
+}
