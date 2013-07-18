@@ -43,7 +43,7 @@ img {
 	width: auto;
 }
 
-.fb-like {
+#main_content_wrap .fb-like {
 	width: 46px;
 	height: auto;
 	display: block;
