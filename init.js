@@ -7,8 +7,8 @@ FBMeet = {
 FBMeet.Loader = {
 
     load: function(e) {
-        //this.loadAPI();
-        this.observeChat();
+        FBMeet.Observer.ChatTabs.observe();
+        FBMeet.Observer.ContactsList.observe();
         this.retrieveToken();
         chrome.runtime.onMessage.addListener(this.messageListener);
     },
@@ -65,29 +65,8 @@ FBMeet.Loader = {
             request: 'getToken'
         });        
         console.log('FBMeet: [CS] Sent "getToken" message to BS');
-    },    
-
-    observeChat: function(e) {
-        var $tabs = $('#ChatTabsPagelet .fbNubGroup.clearfix.videoCallEnabled');
-        // No chat for us to modify =(
-        if ($tabs.length == 0) return;
-        // For chat windows that are already there when the page loads
-        $tabs.children().each(function(i, item) {
-            FBMeet.Chat.Window.build($(item));
-        });
-        // For chat windows that are created by the user afterwards
-        var observer = new WebKitMutationObserver(function() {
-            var counter = $tabs.children().length;
-            var instances = FBMeet.Chat.Window.instances;
-            if (counter > instances) {
-                FBMeet.Chat.Window.build($tabs.children(':first'));
-            } else if (counter < instances) {
-                FBMeet.Chat.Window.instances = counter;
-            }
-        });
-        observer.observe($tabs[0], {'childList': true});
-    },
-
+    }
+    
 };
 
 $(document).ready(function(e) {

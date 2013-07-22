@@ -24,22 +24,17 @@ FBMeet.Chat.Listener = {
 		});
 	},
 
-	picDragStart: function(chat, e) {
-		// Hides annoying layer that stays on top of drop area
-		$('.uiContextualLayerLeft').remove();
-		var $pic = $(e.target);
-		e.dataTransfer.setData('id', $pic.attr('id'));
-	},
-
-	picDrag: function(chat, e) {
-		// Hides annoying layer that stays on top of drop area
-		$('.uiContextualLayerLeft').remove();
-	},
-
 	dropbagDragEnter: function(chat, e) {
+		chat.$dropbag.addClass('dragover');
 		e.stopPropagation();
 		e.preventDefault();
 	},
+
+	dropbagDragLeave: function(chat, e) {
+		chat.$dropbag.removeClass('dragover');
+		e.stopPropagation();
+		e.preventDefault();
+	},	
 
 	dropbagDragOver: function(chat, e) {
 		e.stopPropagation();
@@ -49,10 +44,10 @@ FBMeet.Chat.Listener = {
 	dropbagDrop: function(chat, e) {
 		e.stopPropagation();
 		e.preventDefault();
+		chat.$dropbag.removeClass('dragover');
 		var id = e.dataTransfer.getData('id');
 		var $source = $('#' + id);
-		var $target = $(e.target);
-		chat.dropUser(chat, $source, $target);
+		chat.dropUser(chat, $source, chat.$dropbag);
 	},
 
 	dropUser: function(chat, $source, $target) {
@@ -69,6 +64,7 @@ FBMeet.Chat.Listener = {
 		$('.meet-drop-dismiss').show(800);
 		// Clone picture to insert in drop area
 		var $pic = $source.clone();
+		$pic.addClass('meet-removable');
 		// Clone attached data
 		$pic.data($source.data());
 		$pic.click(chat.removeUser.curry(chat, $target, inviteeId));
@@ -78,7 +74,6 @@ FBMeet.Chat.Listener = {
 			if (success) {
 				$target.append($pic);
 				users[inviteeId] = $pic;
-				console.log('FBMeet: User ' + inviteeId + ' invited.');
 			} else {
 				console.log('FBMeet: Error inviting user ' + inviteeId + ', please check.')
 			}
@@ -95,7 +90,8 @@ FBMeet.Chat.Listener = {
 				$pic.fadeOut(300).promise().done(function() {$pic.remove();});
 				delete users[inviteeId];
 				// Hide drop dismiss info if there's no more users to dismiss
-				if (Object.size(users) == 0) $('.meet-drop-dismiss').hide(800);
+				// 2 initial ones, the owner and the person with whom the owner is chatting
+				if (Object.size(users) == 2) $('.meet-drop-dismiss').hide(800);
 				console.log('FBMeet: User ' + inviteeId + ' uninvited.');
 			} else {
 				console.log('FBMeet: Error uninviting user' + inviteeId + ', please check.');
@@ -104,23 +100,7 @@ FBMeet.Chat.Listener = {
 		});
 	},
 
-	prepareDragDrop: function(chat) {
-		$('.uiScrollableAreaBody li').each(function(index, item) {
-			var $pic = $(item).find('.pic.img');
-			if ($pic && $pic.length > 0) {
-		        $pic.attr({id: 'meet-draggable-' + index, draggable: true});
-		        $pic[0].addEventListener("dragstart", chat.picDragStart.curry(chat), false);
-		        $pic[0].addEventListener("drag", chat.picDrag.curry(chat), false);
-		        // Gotta do it now, otherwise FB blocks me from getting the ID latter
-				var messageUrl = $pic.parents('a:eq(0)').attr('href');
-				var userId = FB.extractUserId(messageUrl);
-		        $pic.data('userId', userId);
-			}
-		});
-	},
-
 	buttonFriendsClick: function(chat, e) {
-		chat.prepareDragDrop(chat);
 		chat.toggleEnabled = true;
 		chat.animateWindow(function(chat) {
 			chat.$slide.slideUp(200);
@@ -129,7 +109,6 @@ FBMeet.Chat.Listener = {
 	},
 
 	buttonDoneClick: function(chat, e) {
-		chat.prepareDragDrop(chat);
 		chat.toggleEnabled = true;
 		chat.animateWindow(function(chat) {
 			chat.$slide.slideUp(200);

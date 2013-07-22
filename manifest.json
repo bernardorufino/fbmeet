@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "FBMeet",
-  "description": "Integrates Facebook chat with events.",
+  "description": "Application that integrates Facebook Chat with Events as a Chrome extension",
   "version": "2.0",
 
   "permissions": [
@@ -13,6 +13,8 @@
   "background": {
     "scripts": [
       "lib/utils.js",
+      "lib/jquery.js", 
+      "lib/fbutils.js", 
       "lib/purl.js", 
       "model/authorizer.js"
     ]
@@ -30,7 +32,8 @@
         "model/event.js",
         "view/templates.js",
         "view/listener.js",
-        "view/chat.js"
+        "view/chat.js",
+        "view/observers.js"
       ]
     }
   ],

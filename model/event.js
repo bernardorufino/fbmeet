@@ -58,7 +58,7 @@ FBMeet.Event = createClass({
         this.location = location;
         this.startTime = startTime;
         this.invited = invited;
-	},
+	}, 
 
     // TODO: Prettify this thing
     prettyDate: function() {

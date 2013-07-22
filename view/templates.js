@@ -51,9 +51,9 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
 <div class="_1sk6 meet-slide meet-friend">
   <div class="_54_-">
     <div class="meet-event-info">
-      <a class="info name" href="#eventUrl">Meetup</a> on <span class="info start_time">02/08/2007</span>
+      <a class="info name" href="#"></a> on <span class="info start_time">02/08/2007</span>
       <span class="location-wrapper">
-         at <span class="info location">Starbucks</span>
+         at <span class="info location"></span>
       </span>
     </div>
     <div class="meet-dropbag"></div>
@@ -65,7 +65,7 @@ FBMeet.Chat.Templates = stringfyProperties(16, -3, {
     */},
 
     wrap: function() {/*
-<div style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="FBMeet" data-tooltip-alignh="center" id="js_48">
+<div id="meet-tip" style="position: absolute; right: 90px;" data-hover="tooltip" aria-label="FBMeet" data-tooltip-alignh="center" id="js_48">
 </div>
     */}
 

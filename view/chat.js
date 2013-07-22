@@ -89,7 +89,7 @@ FBMeet.Chat.Window = createClass({
         dropbag.addEventListener('drop', this.dropbagDrop.curry(this), false);
         dropbag.addEventListener('dragenter', this.dropbagDragEnter.curry(this), false);
         dropbag.addEventListener('dragover', this.dropbagDragOver.curry(this), false);
-
+        dropbag.addEventListener('dragleave', this.dropbagDragLeave.curry(this), false);
     },
 
     dateString: function() {
@@ -132,7 +132,7 @@ FBMeet.Chat.Window = createClass({
             $('.meet-event-info .location-wrapper').hide();
         }
         for (var i = 0; i < event.invited.length; i++) {
-            this.addPictureToDropBag(event.invited[i].picture);
+            this.addPictureToDropBag(event.invited[i]);
         }
     },
 
@@ -144,12 +144,17 @@ FBMeet.Chat.Window = createClass({
         this.$dropbag.removeClass('meet-loading');
     },
 
-    addPictureToDropBag: function(url) {
-        $('<img/>', {
+    addPictureToDropBag: function(invitee) {
+        if (!this.$dropbag.data('users')) this.$dropbag.data('users', {});
+        var users = this.$dropbag.data('users');
+        if (users[invitee.id]) return null;
+        var $pic = $('<img/>', {
             class: 'pic img',
-            src: url,
+            src: invitee.picture,
             draggable: false
         }).appendTo(this.$dropbag);
+        users[invitee.id] = $pic;
+        return $pic;
     },
 
     animateWindow: function(doAnimate) {
@@ -161,7 +166,7 @@ FBMeet.Chat.Window = createClass({
         // Simulating Thread.join with closures and queues
         var ready = false;
         var bodyHeight = this.$chatBody.height();
-        var interval = 60;
+        var interval = 30;
         var timer = setInterval(this.adjustWindow.curry(this, oldHeight, bodyHeight), interval);
         // Make animation
         doAnimate(this);

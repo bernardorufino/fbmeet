@@ -92,6 +92,14 @@
   width: 28px;
 }
 
+.meet-dropbag img.meet-removable {
+  cursor: pointer;
+}
+
+.meet-dropbag img.meet-removable:hover {
+  box-shadow: 0 0 2px 2px #C03D3D;
+}
+
 .meet-dropbag.meet-loading {
   background-color: #CCCCCC;
   cursor: wait;
@@ -102,13 +110,18 @@
   cursor: wait;
 }
 
+.meet-dropbag.dragover {
+  background-color: #FDF3CB;
+  border-style: dashed;
+}
+
 .meet-drag-message {
   margin: 3px 0 3px 0;
   padding-left: 4px;
 }
 
 .meet-event-info {
-  margin: 3px 0 0 4px;
+  margin: 5px 0 0 4px;
   color: #999999;
 }
 
